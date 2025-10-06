@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fall Fest</title>
+  <meta name="description" content="Join us for Fall Fest! Chili cookoff, bonfire, yard games, and cozy sweaters.">
+  <link rel="canonical" href="https://heylookitsgriffin.github.io/fall-fest-site/">
+  
+  <!-- =====================================================
+       SOCIAL PREVIEW / LINK CARDS (Edit og:image path!)
+       ===================================================== -->
+  <meta property="og:title" content="Fall Fest 2025, Baby! 🍂" />
+  <meta property="og:description" content="Its Fricking Fall Fest! Lets do some ORANGE THINGS!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://heylookitsgriffin.github.io/fall-fest-site/" />
+  <!-- Put a real image you add to the repo, e.g., /og.jpg -->
+  <meta property="og:image" content="https://heylookitsgriffin.github.io/fall-fest-site/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- =====================================================
+       GLOBAL STYLES (Colors, layout, components)
+       Edit colors/spacing here for a quick theme change.
+       ===================================================== -->
+  <style>
+    :root {
+      --bg: #fff8ef;
+      --panel: #ffffff;
+      --ink: #222222;
+      --muted: #6b7280;
+      --line: #eee7db;
+      --brand: #b45309; /* amber-700 */
+      --brand-ink: #78350f;
+      --accent: #d97706; /* amber-600 */
+      --ring: rgba(245, 158, 11, .25);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6; color: var(--ink); background: var(--bg);
+    }
+    a { color: var(--brand); text-decoration-thickness: .08em; text-underline-offset: .15em; }
+    a.button { display:inline-block; border:1px solid #111; padding:.8rem 1rem; border-radius:12px; text-decoration:none; color:#111; background:#fff; box-shadow: 0 1px 0 #00000010; }
+    a.button:hover { transform: translateY(-1px); }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+    .hero {
+      background: radial-gradient(1200px 600px at 80% -10%, #ffe8c5 10%, transparent 60%),
+                  radial-gradient(1200px 600px at 10% -10%, #ffd6a8 10%, transparent 60%),
+                  linear-gradient(180deg, #fff3e0 0%, #fff8ef 100%);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-inner { padding: 3rem 0 2rem; text-align: center; }
+    .badge { display:inline-flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--line); padding:.35rem .7rem; border-radius:999px; font-size:.9rem; color:var(--brand-ink); }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); line-height:1.2; margin: .6rem 0 0; }
+    .sub { color: var(--muted); margin-top:.35rem; }
+
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card { background: var(--panel); border:1px solid var(--line); border-radius:16px; padding:1rem 1.25rem; box-shadow:0 10px 20px -12px rgba(0,0,0,.08); }
+    .card h3 { margin:.2rem 0 .5rem; }
+
+    .section { padding: 2rem 0; }
+    .section h2 { font-size: clamp(1.25rem, 2.5vw, 1.6rem); margin: 0 0 .75rem; }
+
+    .timeline { list-style:none; padding:0; margin:0; border-left:2px solid var(--line); }
+    .timeline li { position:relative; padding: .5rem 0 .5rem 1rem; }
+    .timeline li::before { content: ""; position:absolute; left:-6px; top:1rem; width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow:0 0 0 4px var(--ring); }
+    .tag { display:inline-block; background:#fff3e0; border:1px solid #fed7aa; color:#9a3412; border-radius:999px; padding:.25rem .6rem; margin-right:.35rem; font-size:.85rem; }
+
+    .faq details { border:1px solid var(--line); border-radius:12px; padding:.75rem 1rem; background:#fff; }
+    .faq details + details { margin-top:.5rem; }
+    .faq summary { cursor:pointer; font-weight:600; }
+
+    .footer { text-align:center; color: var(--muted); padding: 2rem 0 3rem; border-top:1px solid var(--line); }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .float-leaf { position: absolute; inset:auto; opacity:.15; filter: drop-shadow(0 10px 20px rgba(0,0,0,.12)); animation: drift 18s infinite linear; }
+      .leaf-a { top: -10px; left: 5%; animation-delay: 0s; }
+      .leaf-b { top: -20px; left: 70%; animation-delay: 4s; }
+      .leaf-c { top: -15px; left: 40%; animation-delay: 8s; }
+      @keyframes drift { 0% { transform: translateY(0) rotate(0); } 100% { transform: translateY(140vh) rotate(360deg); } }
+    }
+  </style>
+</head>
+<body>
+  <!-- =====================================================
+       CONFIG: EVENT SETTINGS (EDIT THESE VALUES ONLY)
+       Title, start/end times (ISO with timezone), location,
+       description, RSVP form URL, and potluck sheet URL.
+       ===================================================== -->
+  <script>
+    const EVENT = {
+      title: "Fall Fest 2025: The Orange Things",
+      start: "2025-10-18T11:59:59-05:00", 
+      end:   "2025-10-18T23:59:59-05:00", 
+      location: "1020 Centerpoint Drive, Stevens Point, WI 54481", 
+      description: "Let's go do some Orange Things this Fall Fest! I'm talking fricking going outside, looking at pumpkins, eating some of that food stuff I've heard so much about. Corn, like walking around in some corn. Frickin some other stuff, too. Orange things, man!", // CHANGE ME
+      rsvpUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeGSOdYsJ726K-effaTZ9dGprsygMGr9MLPXEim0djhpTAuhw/viewform?usp=header",
+      potluckUrl: "https://docs.google.com/spreadsheets/d/16AqIVi1Udu5MUfiBDNgCb6jN9MV786yZOajcd6G5heg/edit?usp=sharing"
+    };
+  </script>
+
+  <!-- =====================================================
+       DECORATIVE ELEMENTS (SVG leaves) — Optional
+       Remove these <svg> blocks if you prefer a simpler look.
+       ===================================================== -->
+  <svg class="float-leaf leaf-a" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c4 0 8 3 8 8 0 6-6 10-8 12-2-2-8-6-8-12 0-5 4-8 8-8z"/></svg>
+  <svg class="float-leaf leaf-b" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c4 0 8 3 8 8 0 6-6 10-8 12-2-2-8-6-8-12 0-5 4-8 8-8z"/></svg>
+  <svg class="float-leaf leaf-c" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c4 0 8 3 8 8 0 6-6 10-8 12-2-2-8-6-8-12 0-5 4-8 8-8z"/></svg>
+
+  <!-- =====================================================
+       HERO / HEADER (date badge, title, location, countdown)
+       Buttons: RSVP, Add to Google Calendar, Potluck Sign-Up
+       ===================================================== -->
+  <header class="hero" role="banner">
+    <div class="container hero-inner">
+      <span class="badge" aria-label="Event Date and Time">
+        <span>🍁</span>
+        <span id="dateBadge">Date Badge</span>
+      </span>
+      <h1>Fall Fest 2025: The Orange Things</h1>
+      <p class="sub" id="locationLine">Location Line</p>
+      <p class="sub"><strong id="countdown">Loading…</strong> until we kick off!</p>
+      <p style="margin-top:1rem; display:flex; gap:.5rem; justify-content:center; flex-wrap:wrap;">
+        <a class="button" id="rsvpBtn" href="#rsvp">RSVP</a>
+        <a class="button" id="gcalBtn" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+        <a class="button" id="potluckBtn" href="#" target="_blank" rel="noopener">Potluck Sign-Up</a>
+      </p>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       MAIN CONTENT
+       Sections: What to Expect, When & Where, RSVP, Potluck
+       ===================================================== -->
+  <main class="container" id="main-content">
+    <section class="section">
+      <div class="grid">
+        <div class="card">
+          <h3>What to Expect</h3>
+          <ul>
+            <li>Home-made Apple Cider</li>
+            <li>Adventure at a Corn Maze</li>
+            <li>Potluck Style Dinner</li>
+            <li>Pumpking Carving/Painting (bring your OWN knives/paints)</li>
+            <li>Costume Party (maybe?)</li>
+            <li>Myserious Fire? You never know ¯\_ (ツ)_/¯</li>
+            <li>Orange Autumn Vibes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>When & Where</h3>
+          <p><strong id="whenText">When Text</strong></p>
+          <p><a id="whereLink" href="#" target="_blank" rel="noopener">Where Link</a></p>
+          <p style="margin-top:.75rem">Parking: Street parking available, free, and overnight friendly.</p>
+          <p style="margin-top:.75rem">Overnight: 3 potential sleeping houses. Please bring your own pillow/blanket/sleeping bag.</p>
+        </div>
+        <div class="card" id="rsvp">
+          <h3>RSVP</h3>
+          <p>Let us know you’re coming:</p>
+          <p><a class="button" id="rsvpPrimary" href="#" target="_blank" rel="noopener">Open RSVP Form</a></p>
+          <p class="sub">No account required. Takes ~30 seconds.</p>
+        </div>
+        <div class="card" id="potluck">
+          <h3>Potluck Sign-Up</h3>
+          <p>Claim a dish on the shared sheet:</p>
+          <p><a class="button" id="potluckPrimary" href="#" target="_blank" rel="noopener">Open Potluck Sheet</a></p>
+          <p class="sub">Please avoid duplicates, and dishes should be made PRIOR to the Fall Fest.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Schedule</h2>
+      <ul class="timeline">
+        <li><strong>11:59 AM</strong> — Doors open: Mingle, Chat, & Snacks</li>
+        <li><strong>12:30 PM</strong> — Heading to the ORANGE THINGS: Pumpkins, Corn Maze, Petting Zoo</li>
+        <li><strong>3:30 PM</strong> — Orange Place Closes</li>
+        <li><strong>4:00 PM</strong> — Dinner Time!</li>
+        <li><strong>5:00 PM</strong> — Pumpkin Carving</li>
+        <li><strong>6:30 PM</strong> — Chill Out, Play Orange Games, Watch Orange Movies, Etc</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>FAQs</h2>
+      <div class="faq">
+        <details>
+          <summary>What should I bring?</summary>
+          <p>A pillow and blanket/sleeping bag</p>
+          <p>A food for potluck dinner</p>
+          <p>A postivly Orange attitude</p>
+          <p>Like $12 to get into the pumpkin and corn place (orange)</p>
+          <p>Weather appropriate attire. Bring an umbrella just in case</p>
+        </details>
+        <details>
+          <summary>Weather plan?</summary>
+          <p>We’ll be outdoors mid day, it's fall so I imagine a light jacket is in order.</p>
+          <p>If rain is likely, we’ll play it by ear. Pack an umbrella just in case.</p>
+        </details>
+        <details>
+          <summary>Food?</summary>
+          <p>We are planning a potluck style thing. Please bring your food PRE-MADE. We don't have space for everyone to make their dish here.</p>
+          <p>You can bring an entre, a side, or a dessert. Please compare with what others have written in the Dinner sign up sheet listed at the top of the page to ensure a decent variety.</p>
+        </details>
+        <details>
+          <summary>Can I show up early?</summary>
+          <p>Griffin might be still setting up, but feel free to show up early! Just let Griffin know ahead of time please!</p>
+        </details>
+        <details>
+          <summary>Should I eat before I arrive?</summary>
+          <p>We have no formal lunch plans, so if you have a late breakfast/early lunch before arriving, that would be fine. Otherwise, I am shooting for potluck dinner around 4-4:30ish</p>
+        </details>
+        <details>
+          <summary>Do we have to follow your wacky-ass schedule?</summary>
+          <p>Nope, it's just to give us an order to things to hopfully keep the party running smoothly.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Getting Here</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Map</h3>
+          <p class="sub">Tap to open in your maps app.</p>
+          <p><a id="openMaps" class="button" href="#" target="_blank" rel="noopener">Open in Google Maps</a></p>
+        </div>
+        <div class="card">
+          <h3>Accessibility & Notes</h3>
+          <ul>
+            <li>Griffin lives on the second floor. There is an elevator for those who cannot walk.</li>
+            <li>Restroom available in Griffin's appartment, but we only have the one. Do not blow it up if possible. There is a shower stationed next to the toilet if such an emergency takes place that you need to clean yourself.</li>
+            <li>If you have dietary restrictions, we can't guarantee all the food brought will meet it. To be safe, make sure the dish you bring is safe for you to eat.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================
+       FOOTER (contact)
+       Update your email in the link below.
+       ===================================================== -->
+  <footer class="footer" role="contentinfo">
+    Questions? Text Griffin! You've got his number, you Orange little rascal!</a>
+  </footer>
+
+  <!-- =====================================================
+       STRUCTURED DATA (JSON-LD for search engines)
+       Optional. Updates automatically from EVENT above.
+       ===================================================== -->
+  <script type="application/ld+json" id="event-jsonld"></script>
+
+  <!-- =====================================================
+       JAVASCRIPT (helpers + initialization)
+       - Calendar link
+       - Countdown
+       - Map links
+       - Auto-fill date/location text
+       - RSVP & Potluck buttons
+       ===================================================== -->
+  <script>
+    // ——— Helper functions ———
+    const pad = n => String(n).padStart(2, '0');
+    function toGCalDate(iso) {
+      const d = new Date(iso);
+      // Convert to UTC Z format YYYYMMDDTHHmmssZ
+      return d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+    }
+    function buildGoogleCalLink(ev) {
+      const base = 'https://www.google.com/calendar/render?action=TEMPLATE';
+      const text = encodeURIComponent(ev.title);
+      const details = encodeURIComponent(ev.description);
+      const location = encodeURIComponent(ev.location);
+      const dates = `${toGCalDate(ev.start)}/${toGCalDate(ev.end)}`;
+      return `${base}&text=${text}&details=${details}&location=${location}&dates=${dates}`;
+    }
+
+    // ——— Initialize dynamic bits ———
+    (function init() {
+      try {
+        // Date badge + when line
+        const start = new Date(EVENT.start);
+        const end = new Date(EVENT.end);
+        const dateFmt = new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+        const timeFmt = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
+        document.getElementById('dateBadge').textContent = `${dateFmt.format(start)} • ${timeFmt.format(start)}–${timeFmt.format(end)}`;
+        document.getElementById('whenText').textContent = `${dateFmt.format(start)}, ${timeFmt.format(start)}–${timeFmt.format(end)}`;
+
+        // Location link
+        const maps = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(EVENT.location)}`;
+        document.getElementById('whereLink').href = maps;
+        document.getElementById('whereLink').textContent = EVENT.location;
+        document.getElementById('openMaps').href = maps;
+        document.getElementById('locationLine').textContent = EVENT.location;
+
+        // RSVP & Potluck
+        document.getElementById('rsvpPrimary').href = EVENT.rsvpUrl;
+        const rsvpBtn = document.getElementById('rsvpBtn'); rsvpBtn.href = EVENT.rsvpUrl;
+        document.getElementById('potluckPrimary').href = EVENT.potluckUrl;
+        const potluckBtn = document.getElementById('potluckBtn'); potluckBtn.href = EVENT.potluckUrl;
+
+        // Calendar link
+        document.getElementById('gcalBtn').href = buildGoogleCalLink(EVENT);
+
+        // Countdown
+        const countdownEl = document.getElementById('countdown');
+        function tick() {
+          const now = new Date();
+          const ms = start - now;
+          if (ms <= 0) { countdownEl.textContent = 'It\'s party time!'; return; }
+          const days = Math.floor(ms/86400000);
+          const hours = Math.floor(ms%86400000/3600000);
+          const mins = Math.floor(ms%3600000/60000);
+          countdownEl.textContent = `${days}d ${pad(hours)}h ${pad(mins)}m`;
+        }
+        tick();
+        setInterval(tick, 60000);
+
+        // Event structured data (optional for SEO)
+        const ld = {
+          '@context': 'https://schema.org',
+          '@type': 'Event',
+          name: EVENT.title,
+          startDate: new Date(EVENT.start).toISOString(),
+          endDate: new Date(EVENT.end).toISOString(),
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          location: { '@type': 'Place', name: EVENT.location, address: EVENT.location },
+          description: EVENT.description,
+          organizer: { '@type': 'Person', name: 'Host' }
+        };
+        document.getElementById('event-jsonld').textContent = JSON.stringify(ld);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  </script>
+</body>
+</html>
